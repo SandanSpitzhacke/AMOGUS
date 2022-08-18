@@ -68,7 +68,7 @@ public class KeyInputHandler{
 				client.inGameHud.getChatHud().addMessage(Text.literal("§4§l[\u0d9e]:§r Gamma Multiplier: " + (gammaboost ? 5 : 1)));
 				Amogus.LOGGER.info("Set Gamma boost to " + gammaboost);
 			}
-			client.interactionManager.attackEntity(client.player, client.player);
+//			client.interactionManager.attackEntity(client.player, client.player);
 //			client.gameRenderer.updateTargetedEntity(0); has reach hacks potential
 		});
 		ClientTickEvents.START_WORLD_TICK.register(world -> {
