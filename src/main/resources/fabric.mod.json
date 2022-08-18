@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "amogus",
+  "version": "1.2.0",
+
+  "name": "AMOGUS",
+  "description": "§4A§rnti §4M§rigrator §4O§rptions, §4G§ramma §4U§rnblock §4S§rystem\nThis mod shows the positions of players with migration capes by placing a red glowing armor stand at their positions, giving them a disadvantage at hiding. Future versions might include reach against migration cape wearers.\nIt also re-enables editing the options.txt file beyond the in-game limits and increases the in-game \"gamma\" top limit to 5.0/500%, the top limit for speedrunning.\n§e#saveminecraft",
+  "authors": [
+    "0x1f401"
+  ],
+  "contact": {
+    "homepage": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "sources": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/amogus/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.u1f401.amogus.Amogus"
+    ],
+    "client": [
+      "net.u1f401.amogus.ModClient"
+    ]
+  },
+  "mixins": [
+    "amogus.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
