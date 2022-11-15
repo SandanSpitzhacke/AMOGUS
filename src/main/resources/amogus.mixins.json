@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "OptionExtensionMixin"
+    "OptionExtensionMixin",
+    "OptionSaveMixin"
   ],
   "injectors": {
     "defaultRequire": 1

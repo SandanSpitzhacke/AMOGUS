@@ -1,9 +1,10 @@
 package net.u1f401.amogus;
 
 import net.fabricmc.api.ModInitializer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-// AMOGUS: Account Migration o Gamma unblock system?
+// AMOGUS: Anti Migrator Options, Gamma unblock system
 public class Amogus implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.

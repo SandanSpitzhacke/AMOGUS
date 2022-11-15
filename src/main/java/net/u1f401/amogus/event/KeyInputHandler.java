@@ -10,10 +10,15 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.entity.PlayerModelPart;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.Entity.RemovalReason;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import net.u1f401.amogus.Amogus;
@@ -50,6 +55,7 @@ public class KeyInputHandler{
 	}
 	public static KeyBinding markerkey;
 	public static KeyBinding gammakey;
+	public static KeyBinding statskey;
 	public static boolean gammaboost = true;
 	public static boolean glowing = true;
 	public static HashMap<AbstractClientPlayerEntity, AmogusStand> markers = new HashMap<>();
@@ -67,6 +73,14 @@ public class KeyInputHandler{
 				gammaboost = !gammaboost;
 				client.inGameHud.getChatHud().addMessage(Text.literal("§4§l[\u0d9e]:§r Gamma Multiplier: " + (gammaboost ? 5 : 1)));
 				Amogus.LOGGER.info("Set Gamma boost to " + gammaboost);
+			}
+			if(statskey.wasPressed()) for(AbstractClientPlayerEntity migrator : markers.keySet()){
+				int protection = 0;
+				for(ItemStack armoritem : migrator.getInventory().armor) for(NbtElement enchant : armoritem.getEnchantments())
+					if(((NbtCompound)enchant).getString("id").equals("minecraft:protection")) protection += ((NbtCompound)enchant).getInt("lvl");
+				client.inGameHud.getChatHud().addMessage(Text.literal("§4§l[\u0d9e]:§c ")
+						.append(migrator.getDisplayName()).append(" §9" + migrator.getBlockPos().toShortString())
+						.append(" §7🛡" + migrator.getArmor() + "§5" + protection));
 			}
 //			client.interactionManager.attackEntity(client.player, client.player);
 //			client.gameRenderer.updateTargetedEntity(0); has reach hacks potential
@@ -104,6 +118,7 @@ public class KeyInputHandler{
 	public static void register(){
 		markerkey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.amogus.toggleglow", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_R, "key.categories.amogus"));
 		gammakey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.amogus.gammaboost", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "key.categories.amogus"));
+		statskey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.amogus.showstats", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_U, "key.categories.amogus"));
 		registerKeyInputs();
 	}
 }
