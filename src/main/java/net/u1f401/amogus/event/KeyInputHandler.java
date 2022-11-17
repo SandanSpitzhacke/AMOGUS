@@ -13,6 +13,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.Entity.RemovalReason;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -78,7 +79,8 @@ public class KeyInputHandler{
 					if(((NbtCompound)enchant).getString("id").equals("minecraft:protection")) protection += ((NbtCompound)enchant).getInt("lvl");
 				client.inGameHud.getChatHud().addMessage(Text.literal("§4§l[\u0d9e]:§c ")
 						.append(migrator.getDisplayName()).append(" §9" + migrator.getBlockPos().toShortString())
-						.append(" §7🛡" + migrator.getArmor() + "§5" + protection));
+						.append(" §7🛡" + migrator.getArmor() + "§5" + protection).append(" §c\u2764" + migrator.getHealth())
+						.append(" §4🗡" + migrator.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE)));
 			}
 //			client.interactionManager.attackEntity(client.player, client.player);
 //			client.gameRenderer.updateTargetedEntity(0); has reach hacks potential
